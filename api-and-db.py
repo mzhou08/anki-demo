@@ -16,10 +16,11 @@ def writeCards(fields, data):
         w = csv.writer(csvfile, delimiter = ',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
         #w.writerow(fields)
         #Anki recognizes these as card inputs
+        '''how to map to tags?'''
         for d in data:
             w.writerow(d)
 
-def createCard(ques: str, ans: str, cats: list):
+def createCard(deck:str, ques: str, ans: str, cats: list):
     '''
     Using the Basic card template for this.
     The Cloze format is harder to generate from transcripts
@@ -28,7 +29,7 @@ def createCard(ques: str, ans: str, cats: list):
     
     params = {
         "note": {
-            "deckName": "Default",
+            "deckName": deck,
             "modelName": "Basic",
             "fields": {
                 "Front": ques,
@@ -49,13 +50,22 @@ def addCard(infoDict):
     'version': 6}
 
     r = request.Request('http://localhost:8765', json.dumps(req).encode('utf-8'))
+    
     result = json.load(request.urlopen(r))
     print(result)
-    return result.get('result')
+
+    basicDict = {
+        "action": "version",
+        "version": 6
+    }
+
+    syncr = request.Request('http://localhost:8765', json.dumps(basicDict).encode('utf-8'))
+    res = json.load(request.urlopen(syncr))
+    print(res)
 
 if __name__ == '__main__':
     # cur, conn = setUpDatabase('cards.db')
-    #params = createCard("What is 9 + 10?", "21", ["advanced math"])
-    #addCard(params)
-    writeCards(['Front', 'Back'], [['q', 'a']])
+    params = createCard("Testing", "What is 9 + 10?", "21", ["advanced math"])
+    addCard(params)
+    #writeCards(['Front', 'Back'], [['q', 'a']])
     # conn.close()
