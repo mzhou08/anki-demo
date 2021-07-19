@@ -13,7 +13,7 @@ def setUp(name):
 
 def writeCards(fields, data):
     with open('cards.csv', 'w', encoding = 'utf-8', newline = '') as csvfile:
-        w = csv.writer(csvfile, delimiter = ',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        w = csv.writer(csvfile, delimiter = ';', quotechar='|', quoting=csv.QUOTE_MINIMAL)
         #w.writerow(fields)
         #Anki recognizes these as card inputs
         '''how to map to tags?'''
@@ -35,9 +35,9 @@ def createCard(deck:str, ques: str, ans: str, cats: list):
                 "Front": ques,
                 "Back": ans
             },
-            "options": {
-                "closeAfterAdding": True
-            },
+            # "options": {
+            #    "autoAdd": True
+            # },
             "tags": cats
         }
     }
@@ -45,12 +45,11 @@ def createCard(deck:str, ques: str, ans: str, cats: list):
     return params
 
 def addCard(infoDict):
-    req = {'action': "guiAddCards",
+    req = {'action': "addNote",
     'params': infoDict,
     'version': 6}
-
-    r = request.Request('http://localhost:8765', json.dumps(req).encode('utf-8'))
     
+    r = request.Request('http://localhost:8765', json.dumps(req).encode('utf-8'))
     result = json.load(request.urlopen(r))
     print(result)
 
@@ -65,7 +64,11 @@ def addCard(infoDict):
 
 if __name__ == '__main__':
     # cur, conn = setUpDatabase('cards.db')
-    params = createCard("Testing", "What is 9 + 10?", "21", ["advanced math"])
+    deck = input("Which deck?\n")
+    q = input("Question:\n")
+    ans = input("Answer:\n")
+    tags = input("Tags:\n").split(', ')
+    params = createCard(deck, q, ans, tags)
     addCard(params)
-    #writeCards(['Front', 'Back'], [['q', 'a']])
+    writeCards(['Question', 'Answer', 'Tags'], [[q, ans, tags]])
     # conn.close()
