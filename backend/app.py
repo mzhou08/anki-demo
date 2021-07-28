@@ -6,10 +6,6 @@ from flask.scaffold import setupmethod
 from flask_cors import CORS
 from flask import current_app, g
 
-
-import requests
-import time
-
 app = Flask(__name__)
 CORS(app)
 
