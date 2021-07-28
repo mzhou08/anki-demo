@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component } from 'react';
 
 // const sqlite3 = require('sqlite3');
 
