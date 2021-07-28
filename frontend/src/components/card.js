@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 
 class Card extends Component {
 
+    state = {
+        Front: 'front here',
+        Back: 'back here'
+    }
+
     render() {
 
         return (

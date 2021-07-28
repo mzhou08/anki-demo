@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 
 // const sqlite3 = require('sqlite3');
 
@@ -6,9 +6,9 @@ class CardInput extends Component {
     
 
     state = {
-        Front: '',
-        Back: '',
-        Tags: ''
+        deck: '',
+        front: '',
+        back: ''
     };
     
     handleChange = (e) => {
@@ -19,16 +19,16 @@ class CardInput extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        // let db = new sqlite3.Database('./cards.db', sqlite3.OPEN_READWRITE);
-        
-        // db.serialize( () => {
-        //     db.run('CREATE TABLE IF NOT EXISTS Cards (id INTEGER PRIMARY KEY, Front TEXT UNIQUE, Back');
-        //     db.run('INSERT INTO Cards (Front, Back) VALUES (?, ?)', [this.state.Front, this.state.Back]);
-        // })
-
-        // db.close();
-
-        console.log(this.state);
+    
+        fetch('http://127.0.0.1:5000/cards/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.state)
+        })
+        .then(resp => resp.json())
+        .then(resp => console.log(resp))
 
         document.getElementById("cardForm").reset()
         
@@ -38,13 +38,13 @@ class CardInput extends Component {
         return (
             <div className = 'card-info'>
                 <form onSubmit = { this.handleSubmit } id = 'cardForm'>
+                    <label htmlFor="deck">Deck:</label>
+                    <input type = 'text'id = "deck" onChange = { this.handleChange }/>
                     <label htmlFor="front">Front:</label>
-                    <input type = 'text'id = "Front" onChange = { this.handleChange }/>
+                    <input type = 'text'id = "front" onChange = { this.handleChange }/>
                     <label htmlFor="Back">Back:</label>
-                    <input type = 'text'id = "Back" onChange = { this.handleChange }/>
-                    <label htmlFor="Tags">Tags:</label>
-                    <input type = 'text'id = "Tags" onChange = { this.handleChange }/>
-                    <button>Submit</button>
+                    <input type = 'text'id = "back" onChange = { this.handleChange }/>
+                    <button>Create Card</button>
                 </form>
             </div>
         

@@ -1,22 +1,24 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import CardInput from './components/cardinput';
-import Card from './components/card';
+// import Card from './components/card';
 
 function App() {
 
   const [card, setCard] = useState([]);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:5000/getDecks', {
+    fetch('http://127.0.0.1:5000/getDecks/', {
       'methods': 'GET',
       headers: {
-        'Content-Type': 'applications/json'
+        'Content-Type': 'application/json'
       }
-    })
+    }) 
+    .then(resp => resp.json())
+    .then(resp => setCard(resp))
+    .catch(error => console.log(error))
   },[])
-  .then(resp => resp.json())
-  .catch(error => console.log(error))
+
 
 
   return (
@@ -26,7 +28,6 @@ function App() {
       </h1>
       <p>This is a prototype build of the flashcards feature in LearningClues.
       </p>
-      <Card />
       <CardInput />
     </div>
     
