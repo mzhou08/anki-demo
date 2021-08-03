@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import './App.css';
 import CardInput from './components/cardinput';
 import Card from './components/card';
 
 function App() {
 
-  const [cards, setCard] = useState([]);
+  /*const [cards, setCard] = useState([]);
 
   useEffect(() => {
     fetch('http://127.0.0.1:5000/getDecks/', {
@@ -18,7 +18,7 @@ function App() {
     .then(resp => setCard(resp))
     .catch(error => console.log(error))
   },[])
-
+  */
 
 
   return (
