@@ -9,6 +9,11 @@ from flask import current_app, g
 app = Flask(__name__)
 CORS(app)
 
+#################################
+# TEMPORARILY UNUSED CODE BELOW #
+#################################
+
+
 def setUpDatabase():
     path = os.path.dirname(os.path.abspath(__file__))
     conn = sqlite3.connect(path+'/cards.db')
