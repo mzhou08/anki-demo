@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './card.scss';
 
 class Card extends Component {
 
@@ -8,6 +9,15 @@ class Card extends Component {
     }
 
     getState = () => {
+
+        let url = 'http://clapp1-dev.eba-bfkixsew.us-east-2.elasticbeanstalk.com/api/search/?q=rock&class_id=91'
+
+        let params = {
+            method: 'GET'
+        }
+
+        /* OLD API CALL HERE
+
         let url = 'http://127.0.0.1:5000/getDecks/'
 
         let params = {
@@ -15,6 +25,8 @@ class Card extends Component {
             headers: {
                 'Content-Type': 'application/json'
             }}
+        
+        */
         
         fetch(url, params)
             .then(resp => resp.json())

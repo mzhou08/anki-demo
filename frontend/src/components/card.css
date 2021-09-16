@@ -1,0 +1,12 @@
+body {
+  background-color: lightgrey;
+}
+
+.Card {
+  text-align: center;
+  background-color: white;
+  border-style: hidden;
+  border-radius: 50px;
+}
+
+/*# sourceMappingURL=card.css.map */
