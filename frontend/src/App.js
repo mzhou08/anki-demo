@@ -23,6 +23,12 @@ function App() {
 
   return (
     <div className="App">
+      <header className="App-header">
+        <img src = {"./LearningClues Logo Small Logo.png"} alt = "LearningClues Flashcards" className = 
+          "logo" 
+          />
+
+      </header>
       <h1>
         Flashcard Demo - Features and Implementation
       </h1>

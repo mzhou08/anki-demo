@@ -2,16 +2,19 @@ $font-stack: Fredoka one, Avenir;
 $primary-color: #1C5AF5;
 $second-color: black;
 $tert-color: white;
-$card-text-color: grey;
+$card-text-color: lightgrey;
 
 body {
-    background-color: lightgrey;
+    background-color: rgb(251, 247, 253);
 }
 
 .Card {
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
+
+    margin-top: 200px;
+    margin-bottom: 200px;
     width: 50%;
     text-align: center;
     background-color: $tert-color;
