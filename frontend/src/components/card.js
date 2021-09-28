@@ -46,8 +46,9 @@ class Card extends Component {
                 <h2>{this.state.Front}</h2>
                 <hr/>
                 <h2>{this.state.Back}</h2>
-                <br />
+                <br/>
             </div>
+            
         )
     }
 }

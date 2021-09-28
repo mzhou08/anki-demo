@@ -2,6 +2,7 @@
 import './App.css';
 import CardInput from './components/cardinput';
 import Card from './components/card';
+import Toolbar from "./components/toolbar";
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
       </p>
       <CardInput />
       <Card />
+      <Toolbar />
     </div>
   );
 }
