@@ -37,9 +37,9 @@ class Card extends Component {
             }}
         
         */
-        this.componentDidMount(){
+        // this.componentDidMount(){
 
-        }
+        // }
         fetch(url, params)
             .then(resp => resp.json())
             .then((data) => {
