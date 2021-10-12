@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import './card.scss';
 
+/*
+passing state through props--
+In search, the heirarchy is 
+Canvas page -> identity embed tokens -> components (app.js -> learningclues -> search -> searchcomponent)
+Flashcard will be a child component of search (only under a successful return of a search)
+So go to the successful return case, add flashcard there. (look in search component)
+Then make another if statement: 
+if flashcards-enabled then display flashcards.
+Then start to modify the CSS for that component, because figma css is hardcoded and broken
+*/
 class Card extends Component {
 
     state = {
@@ -27,7 +37,9 @@ class Card extends Component {
             }}
         
         */
-        
+        this.componentDidMount(){
+
+        }
         fetch(url, params)
             .then(resp => resp.json())
             .then((data) => {
